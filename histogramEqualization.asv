@@ -1,0 +1,66 @@
+function [equalizedImage, outputHist, inputHist] = histogramEqualization(img, a)
+    grayscaleImg = rgb2gray(img);
+    [x, y] = size(grayscaleImg);
+
+    inputHist = 1 : 256;
+    count = 0; 
+    for i = 1 : 256
+        for j = 1 : x
+            for k = 1 : y
+                if grayscaleImg(j, k) == i - 1
+                    count = count + 1;
+                end
+            end
+        end
+        inputHist(i) = count;
+        count = 0;  
+    end
+
+    inputHist = zeros(1, 256);
+    for i = 0 : 255
+        for j = 1 : x
+            for k = 1 : y
+                if img(j, k) == i
+                    input(i + 1) = y_axis(i + 1) + 1;
+                end
+            end
+        end 
+    end
+
+    probability = (1 / (x * y)) * inputHist;
+    cumulative = 1 : 256;
+
+    for i = 1 : 256
+        if (i == 1)
+            cumulative(i) = probability(i);
+        else
+            cumulative(i) = probability(i) + cumulative(i-1);
+        end
+    end
+
+    cumulative = round(255 * cumulative);
+    outputImg = ones(x, y);
+    
+    for i = 1 : x
+        for j = 1 : y
+            temp = grayscaleImg(i, j) + 1;
+            outputImg(i, j) = cumulative(temp);
+        end                                             
+    end
+    
+    outputHist = 1 : 256;
+    count = 0; 
+    for i = 1 : 256
+        for j = 1 : x
+            for k = 1 : y
+                if outputImg(j, k) == i - 1
+                    count = count + 1;
+                end
+            end
+        end
+        outputHist(i) = count;
+        count = 0;  
+    end
+
+    equalizedImage = outputImg;
+end

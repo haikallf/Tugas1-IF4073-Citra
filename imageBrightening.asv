@@ -1,0 +1,17 @@
+function brightenedImage = imageBrightening(img, a, b)
+    [x,y] = size(img);
+    B = img;
+    for i = 1 : x
+        for j = 1 : y
+            temp = a * img(j, i, :) + b;
+            if (temp < 0)
+                B() = 0;
+            elseif (temp > 255)
+                B(i, j) = 255;
+            else
+                B(i, j) = temp;
+            end
+        end
+    end
+    brightenedImage = B;
+end
