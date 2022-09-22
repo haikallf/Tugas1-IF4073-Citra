@@ -75,7 +75,7 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in soal1__uploadBtn.
 function soal1__uploadBtn_Callback(hObject, eventdata, handles)
-[rawname, rawpath] = uigetfile(('*.jpg'), 'Select Image');
+[rawname, rawpath] = uigetfile(({'*.png';'*.jpg';'*.tiff'}), 'Select Image');
 fullname = [rawpath rawname];
 set(handles.soal1__directory, 'String', fullname);
 

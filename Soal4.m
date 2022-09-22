@@ -75,7 +75,7 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in soal4__uploadBtn.
 function soal4__uploadBtn_Callback(hObject, eventdata, handles)
-[rawname, rawpath] = uigetfile(('*.jpg'), 'Select Image');
+[rawname, rawpath] = uigetfile(({'*.png';'*.jpg';'*.tiff'}), 'Select Image');
 fullname = [rawpath rawname];
 set(handles.soal4__directoryInput, 'String', fullname);
 set(handles.soal4__directoryInput, 'enable', 'off');
@@ -157,7 +157,7 @@ set(handles.soal4__histogramSpesificationBtn,'Enable','on');
 
 % --- Executes on button press in soal4__uploadRefBtn.
 function soal4__uploadRefBtn_Callback(hObject, eventdata, handles)
-[rawname, rawpath] = uigetfile(('*.jpg'), 'Select Image');
+[rawname, rawpath] = uigetfile(({'*.png';'*.jpg';'*.tiff'}), 'Select Image');
 fullname = [rawpath rawname];
 set(handles.soal4__directoryRef, 'String', fullname);
 set(handles.soal4__directoryRef, 'enable', 'off');

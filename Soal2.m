@@ -22,7 +22,7 @@ function varargout = Soal2(varargin)
 
 % Edit the above text to modify the response to help Soal2
 
-% Last Modified by GUIDE v2.5 20-Sep-2022 05:46:37
+% Last Modified by GUIDE v2.5 22-Sep-2022 23:42:23
 
 % Begin initialization code - DO NOT EDIT
 gui_Singleton = 1;
@@ -75,7 +75,7 @@ varargout{1} = handles.output;
 
 % --- Executes on button press in soal2__uploadBtn.
 function soal2__uploadBtn_Callback(hObject, eventdata, handles)
-[rawname, rawpath] = uigetfile(('*.jpg'), 'Select Image');
+[rawname, rawpath] = uigetfile(({'*.png';'*.jpg';'*.tiff'}), 'Select Image');
 fullname = [rawpath rawname];
 set(handles.soal2__directory, 'String', fullname);
 set(handles.soal2__directory, 'enable', 'off');
@@ -176,12 +176,16 @@ axes(handles.soal2__outputImg);
 
 switch selectedItem
     case "Image Brightening"
+        set(handles.soal2__brightenBtn, 'String', 'Brighten')
         outputImage = imageBrightening(img, a, b);
     case "Log Transformation"
+        set(handles.soal2__brightenBtn, 'String', 'Logtrans')
         outputImage = logTransform(img, a);
     case "Power Transformation"
+        set(handles.soal2__brightenBtn, 'String', 'Powtrans')
         outputImage = powerTransform(img, a, b);
     case "Contrast Stretching"
+        set(handles.soal2__brightenBtn, 'String', 'Stretch')
         outputImage = contrastStretching(img);
     otherwise
         outputImage = imageBrightening(img, a, b);
@@ -190,27 +194,27 @@ end
 imshow(outputImage, []);
 
 axes(handles.soal2__inputHistR);
-RGBHistogram(img(:, :, 1));
+imhist(img(:, :, 1));
 title('R Histogram');
 
 axes(handles.soal2__inputHistG);
-RGBHistogram(img(:, :, 2));
+imhist(img(:, :, 2));
 title('G Histogram');
 
 axes(handles.soal2__inputHistB);
-RGBHistogram(img(:, :, 3));
+imhist(img(:, :, 3));
 title('B Histogram');
 
 axes(handles.soal2__outputHistR);
-RGBHistogram(outputImage(:, :, 1));
+imhist(outputImage(:, :, 1));
 title('Output R Histogram');
 
 axes(handles.soal2__outputHistG);
-RGBHistogram(outputImage(:, :, 2));
+imhist(outputImage(:, :, 2));
 title('Output G Histogram');
 
 axes(handles.soal2__outputHistB);
-RGBHistogram(outputImage(:, :, 3));
+imhist(outputImage(:, :, 3));
 title('Output B Histogram');
 
 
