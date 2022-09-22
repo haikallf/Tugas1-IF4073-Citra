@@ -22,8 +22,10 @@ function equalizedImage = histogramEqualization(img)
             cumulative(i) = probability(i) + cumulative(i-1);
         end
     end
-
-    cumulative = round(255 * cumulative);
+    
+    for i = 1 : 256
+        cumulative(i) = round(255 * cumulative(i));
+    end
     outputImg = ones(x, y);
     
     for i = 1 : x

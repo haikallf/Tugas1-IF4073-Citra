@@ -119,10 +119,10 @@ grayscaleImg = im2gray(img);
 set(handles.soal3__histogramEqualizationBtn,'String','10%');
 
 axes(handles.soal3__inputImg);
-imshow(grayscaleImg);
+imshow(img);
 set(handles.soal3__histogramEqualizationBtn,'String','20%');
 
-outputImage = histogramEqualization(grayscaleImg);
+outputImage = histogramEqualizationRGB(img);
 set(handles.soal3__histogramEqualizationBtn,'String','50%');
 axes(handles.soal3__outputImg);
 imshow(outputImage, []);
